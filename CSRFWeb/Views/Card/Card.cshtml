@@ -1,0 +1,14 @@
+﻿@model Card
+@{
+    ViewData["Title"] = "Card Details";
+
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">Card Details</h1>
+    <p class="lead">Card Number: @Model.CardNumber</p>
+    <p class="lead">Card Holder: @Model.Name</p>
+    <p class="lead">Expiry Date: @Model.ExpiryDate</p>
+    <p class="lead">CVV: @Model.CVV</p>
+</div>
