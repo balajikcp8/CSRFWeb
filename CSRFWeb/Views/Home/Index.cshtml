@@ -1,9 +1,11 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    //var token = "https://localhost:7120/card?token="+Html.AntiForgeryToken();
 }
 
 
 
-<form method="post" action="https://localhost:7120/card">
+<form method="post" asp-action="Card" asp-controller="Card">
+    <input type="hidden" name="id" value="101" />
     <button type="submit">Card Details</button>
 </form>

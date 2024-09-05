@@ -8,9 +8,10 @@ namespace CSRFWeb.Controllers
     public class CardController : Controller
     {
         [ValidateAntiForgeryToken]
-        public IActionResult Card()
+        [HttpPost]
+        public IActionResult Card(int id)
         {
-            Card card = new Card() { CardNumber = "1234 5678 9012 3456", CVV = "123", ExpiryDate = "12/2022", Name = "John Doe" };
+            Card card = new Card() { CardNumber = "1234 5678 9012 3456", CVV = "123", ExpiryDate = "12/2022", Name = "John Doe", Id = id };
 
             return View(card);
         }

@@ -1,11 +1,19 @@
+using Microsoft.AspNetCore.Mvc;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+//builder.Services.AddControllersWithViews();
+
+//builder.Services.AddControllersWithViews(options =>
+//{
+//    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+//});
 
 builder.Services.AddAntiforgery(options =>
 {
     options.HeaderName = "X-CSRF-TOKEN"; // Customize as needed
+    options.FormFieldName = "X-CSRF-TOKEN";
 });
 
 var app = builder.Build();
