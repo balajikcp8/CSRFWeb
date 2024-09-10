@@ -1,9 +1,9 @@
-using Microsoft.AspNetCore.Mvc;
+using CSRFWeb.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-//builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews();
 
 //builder.Services.AddControllersWithViews(options =>
 //{
@@ -12,8 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAntiforgery(options =>
 {
-    options.HeaderName = "X-CSRF-TOKEN"; // Customize as needed
-    options.FormFieldName = "X-CSRF-TOKEN";
+    options.HeaderName = AntiforgeryMiddleware.HeaderName; // Customize as needed
+    options.FormFieldName = AntiforgeryMiddleware.FormFieldName;    
 });
 
 var app = builder.Build();
@@ -28,10 +28,10 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseMiddleware<AntiforgeryMiddleware>();
 
 app.MapControllerRoute(
     name: "default",
